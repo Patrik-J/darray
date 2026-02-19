@@ -18,7 +18,7 @@ class Array {
         // element-wise multiplication/division of the arrays
         Array mult(Array a);
         Array div(Array a);
-        Array operator*(Array a);
+        Array operator&(Array a);
         Array operator/(Array a);
 
         // multiplication/division with doubles
