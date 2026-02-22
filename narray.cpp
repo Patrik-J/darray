@@ -165,6 +165,41 @@ NArray<T> NArray<T>::transpose() {
 };
 
 template <typename T>
+NArray<T> NArray<T>::operator*(double d) {
+    int rows = std::get<0>(this->shape());
+    int columns = std::get<1>(this->shape());
+
+    NArray<T> out = NArray<T>(rows, columns);
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            out[i][j] = this->data[i][j]*d;
+        }
+    }
+    return out; 
+};
+
+template <typename T>
+NArray<T> NArray<T>::operator/(double d) {
+    int rows = std::get<0>(this->shape());
+    int columns = std::get<1>(this->shape());
+
+    NArray<T> out = NArray<T>(rows, columns);
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            out[i][j] = this->data[i][j]/d;
+        }
+    }
+    return out; 
+};
+
+template <typename T>
+NArray<T> operator*(double d, NArray<T>& na) {
+    return na*d;
+};
+
+template <typename T>
 Array<T>& NArray<T>::operator[](int index) {
     return this->data[index];
 };

@@ -34,6 +34,11 @@ class NArray {
         NArray<T> elmult(NArray<T>& na);
         NArray<T> eldiv(NArray<T>& na);
 
+        // multiplication with scalars
+        NArray<T> operator*(double d);
+        NArray<T> operator/(double d);
+        template<class U>
+        friend NArray<U> operator*(double d, NArray<U>& a);
 
         // index operators
         Array<T>& operator[](int index);
