@@ -165,6 +165,16 @@ NArray<T> NArray<T>::transpose() {
 };
 
 template <typename T>
+NArray<T> NArray<T>::inverse() {
+    
+};
+
+template <typename T>
+NArray<T> NArray<T>::det() {
+    
+};
+
+template <typename T>
 NArray<T> NArray<T>::operator*(double d) {
     int rows = std::get<0>(this->shape());
     int columns = std::get<1>(this->shape());

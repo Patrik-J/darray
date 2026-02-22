@@ -30,6 +30,12 @@ class NArray {
         // transpose
         NArray<T> transpose();
 
+        // inverse
+        NArray<T> inverse();
+
+        // determinante
+        NArray<T> det();
+
         // element-wise multiplication/division of narrays
         NArray<T> elmult(NArray<T>& na);
         NArray<T> eldiv(NArray<T>& na);
