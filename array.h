@@ -18,7 +18,7 @@ class Array {
         Array<T> operator+(Array<T>& a);
         Array<T> operator-(Array<T>& a);
 
-        // element-wise multiplication/division of the arrays
+        // element-wise multiplication/division of arrays
         Array<T> mult(Array<T>& a);
         Array<T> div(Array<T>& a);
         Array<T> operator*(Array<T>& a);
@@ -38,6 +38,11 @@ class Array {
         // comparison 
         bool operator==(const Array<T>& a);
         bool operator!=(const Array<T>& a);
+
+        // append to array
+        void append(T entry);
+        void append(T* entries, int added_length);
+        void append(Array<T>& a);
 
         // read and write indices
         T& operator[](int index);

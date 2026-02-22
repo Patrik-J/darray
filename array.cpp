@@ -212,24 +212,51 @@ T* Array<T>::empty_array(int length) {
 
 template <typename T>
 void Array<T>::resize(int new_length) {
-    if (new_length >= 1) {
-        T* new_data = new T[new_length];
-        int old_length = this->len();
+    if (new_length <= 0) return;
 
-        if (new_length > old_length) {
-            for (int i = 0; i < old_length; i++) {
-                new_data[i] = this->data[i];
-            }
-            for (int i = old_length; i < new_length; i++) {
-                new_data[i] = (T) 0.0;
-            }   
-        } else if (new_length < old_length) {
-            for (int i = 0; i < new_length; i++) {
-                new_data[i] = this->data[i];
-            }  
-        };
+    T* new_data = new T[new_length];
+    int old_length = this->length;
 
-        this->length = new_length;
-        this->data = new_data;
+    if (new_length > old_length) {
+        for (int i = 0; i < old_length; i++) {
+            new_data[i] = this->data[i];
+        }
+        for (int i = old_length; i < new_length; i++) {
+            new_data[i] = T();
+        }   
+    } else if (new_length < old_length) {
+        for (int i = 0; i < new_length; i++) {
+            new_data[i] = this->data[i];
+        }  
     };
+    delete[] this->data;
+    this->length = new_length;
+    this->data = new_data;
+
+};
+
+template <typename T>
+void Array<T>::append(T entry) {
+    int old_length = this->length;
+    this->resize(old_length + 1);
+    this->data[old_length] = entry;
+};
+
+template <typename T>
+void Array<T>::append(T* entries, int added_length) {
+    int old_length = this->length;
+    this->resize(old_length + added_length);
+    for (int i = 0; i < added_length; i++) {
+        this->data[i + old_length] = entries[i];
+    }
+};
+
+template <typename T>
+void Array<T>::append(Array<T>& a) {
+    int old_length = this->length;
+    int added_length = a.len();
+    this->resize(old_length + added_length);
+    for (int i = 0; i < added_length; i++) {
+        this->data[i + old_length] = a[i];
+    }
 };
