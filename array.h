@@ -7,6 +7,7 @@
 template <typename T>
 class Array {
     public:
+        Array() : data(nullptr), length(0) {};
         Array(int length);
         Array(int length, T* entries);
         Array(Array<T>& a);

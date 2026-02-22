@@ -146,7 +146,7 @@ Array<T> operator*(double d, Array<T>& a) {
 template <typename T>
 Array<T> Array<T>::operator=(const Array<T>& a) {
     if (this != &a) {
-        if (this->length != a.len()) {
+        if (this->length != a.length) {
             throw_error("Cannot assign arrays of different lengths.");
         }
         for (int i = 0; i < this->length; i++) {
