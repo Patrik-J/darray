@@ -21,7 +21,7 @@ class Array {
         // element-wise multiplication/division of the arrays
         Array<T> mult(Array<T>& a);
         Array<T> div(Array<T>& a);
-        Array<T> operator&(Array<T>& a);
+        Array<T> operator*(Array<T>& a);
         Array<T> operator/(Array<T>& a);
 
         // multiplication/division with doubles
@@ -35,7 +35,11 @@ class Array {
         // copy and assignment
         Array<T> operator=(const Array<T>& a);
 
-        // read indices
+        // comparison 
+        bool operator==(const Array<T>& a);
+        bool operator!=(const Array<T>& a);
+
+        // read and write indices
         T& operator[](int index);
         T& operator[](int index) const;
 
@@ -46,7 +50,7 @@ class Array {
         template<class U>
         friend std::ostream& operator<<(std::ostream &strm, const Array<U>& a);
 
-        int len();
+        int len() const;
         T* get_data();
 
     private:

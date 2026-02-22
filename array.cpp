@@ -91,7 +91,7 @@ Array<T> Array<T>::div(Array<T>& a) {
 };
 
 template <typename T>
-Array<T> Array<T>::operator&(Array<T>& a) {
+Array<T> Array<T>::operator*(Array<T>& a) {
     return this->mult(a);
 };
 
@@ -145,7 +145,7 @@ Array<T> operator*(double d, Array<T>& a) {
 
 template <typename T>
 Array<T> Array<T>::operator=(const Array<T>& a) {
-    if (this != a) {
+    if (this != &a) {
         if (this->length != a.len()) {
             throw_error("Cannot assign arrays of different lengths.");
         }
@@ -154,6 +154,26 @@ Array<T> Array<T>::operator=(const Array<T>& a) {
         }
     }
     return *this;
+};
+
+template <typename T>
+bool Array<T>::operator==(const Array<T>& a) {
+    if (this != &a) {
+        if (this->length != a.len()) {
+            return false;
+        }
+        for (int i = 0; i < this->length; i++) {
+            if (this->data[i] != a[i]) {
+                return false;
+            }
+        }
+    }
+    return true;
+};
+
+template <typename T>
+bool Array<T>::operator!=(const Array<T>& a) {
+    return not (*this == a);
 };
 
 template <typename T>
@@ -167,7 +187,7 @@ std::ostream& operator<<(std::ostream &strm, const Array<T>& a) {
 };
 
 template <typename T>
-int Array<T>::len() {
+int Array<T>::len() const {
     return this->length;
 };
 
