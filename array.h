@@ -46,16 +46,19 @@ class Array {
         template<class U>
         friend bool check_array_dimensions(Array<U> a1, Array<U> a2);
 
+        // resize array
+        void resize(int new_length);
+
         // print array
         template<class U>
         friend std::ostream& operator<<(std::ostream &strm, const Array<U>& a);
 
-        int len() const;
+        int len();
         T* get_data();
 
     private:
         T* data;
-        const int length;
+        int length;
         void initialize(T* entries);
         T* empty_array(int length);
 };

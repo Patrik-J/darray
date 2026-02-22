@@ -187,7 +187,7 @@ std::ostream& operator<<(std::ostream &strm, const Array<T>& a) {
 };
 
 template <typename T>
-int Array<T>::len() const {
+int Array<T>::len() {
     return this->length;
 };
 
@@ -208,4 +208,28 @@ T* Array<T>::empty_array(int length) {
         zero[i] = (T) 0.0;
     }
     return zero;
+};
+
+template <typename T>
+void Array<T>::resize(int new_length) {
+    if (new_length >= 1) {
+        T* new_data = new T[new_length];
+        int old_length = this->len();
+
+        if (new_length > old_length) {
+            for (int i = 0; i < old_length; i++) {
+                new_data[i] = this->data[i];
+            }
+            for (int i = old_length; i < new_length; i++) {
+                new_data[i] = (T) 0.0;
+            }   
+        } else if (new_length < old_length) {
+            for (int i = 0; i < new_length; i++) {
+                new_data[i] = this->data[i];
+            }  
+        };
+
+        this->length = new_length;
+        this->data = new_data;
+    };
 };
