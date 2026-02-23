@@ -260,3 +260,15 @@ void Array<T>::append(Array<T>& a) {
         this->data[i + old_length] = a[i];
     }
 };
+
+template <typename T>
+T Array<T>::dot(Array<T>& a) {
+    if (this->length != a.length) {
+        throw_error("Dot product not defined for arrays of unequal length.");
+    };
+    T sum {};
+    for (int i = 0; i < this->length; i++) {
+        sum += this->data[i]*a[i];
+    }
+    return sum;
+};

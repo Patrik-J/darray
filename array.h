@@ -25,6 +25,9 @@ class Array {
         Array<T> operator*(Array<T>& a);
         Array<T> operator/(Array<T>& a);
 
+        // dot product on arrays
+        T dot(Array<T>& a);
+
         // multiplication/division with doubles
         Array<T> mult(double d);
         Array<T> div(double d);
