@@ -92,3 +92,72 @@ This repository is part of a fun side project to create physics simulations. For
     double d = arr_1[2]
 
 ```
+
+## 'NArray<T>'-class methods
+
+### Constructors
+
+```cpp
+    NArray<T>(int N, int M)
+    NArray<T>(int N, int M, T** entries)
+    NArray<T>(T &entries[N][M])
+    NArray<T>(NArray<T>& na)
+```
+
+### Math
+
+```cpp
+    NArray<double> arr_1 = NArray<double>(2, 2)
+    NArray<double> arr_2 = NArray<double>(2, 2)
+    double d = 1.0;
+
+    // addition/subtraction
+    arr_1.add(arr_2) or arr_1 + arr_2
+    arr_1.sub(arr_2) or arr_1 - arr_2
+
+    // matrix multiplication
+    arr_1.matmult(arr_2) or arr_1 * arr_2
+
+    // element-wise multiplication/division
+    arr_1.elmult(arr_2)
+    arr_1.eldiv(arr_2)
+
+    // dot product
+    arr_1.dot(arr_2)
+
+    // scalar multiplication/division
+    arr_1 * d or d * arr_1
+    arr_1 / d
+```
+
+### Logic
+```cpp
+    // assignment
+    arr_2 = arr_1
+
+    // comparison
+    arr_1 == arr_2
+    arr_1 != arr_2
+```
+
+### Operations on arrays
+```cpp
+    arr_1.transpose()
+```
+
+### Other
+```cpp
+    // print array
+    std::cout << arr_1 << std::endl
+
+    // dimensions
+    arr_1.rows()
+    arr_1.columns()
+    arr_1.shape()
+
+    // read/write indices
+    arr_1[0][1] = -1.0
+    double d = arr_1[1][0]
+    double* row = arr_1[0]
+
+```
