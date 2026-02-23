@@ -40,6 +40,11 @@ class NArray {
         template<class U>
         friend NArray<U> operator*(double d, NArray<U>& a);
 
+        // comparison 
+        bool operator==(const NArray<T>& na);
+        bool operator!=(const NArray<T>& na);
+
+
         // index operators
         Array<T>& operator[](int index);
         Array<T>& operator[](int index) const;

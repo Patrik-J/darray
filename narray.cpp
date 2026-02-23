@@ -260,3 +260,25 @@ bool NArray<T>::multiplicable(NArray<T>& na) {
     };
     return false;
 };
+
+template <typename T>
+bool NArray<T>::operator==(const NArray<T>& na) {
+    if (this != &na) {
+        if ((this->N != na.N) || (this->M != na.M)) {
+            return false;
+        }
+        for (int i = 0; i < this->N; i++) {
+            for (int j = 0; j < this->M; j++) {
+                if (this->data[i][j] != na[i][j]) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+};
+
+template <typename T>
+bool NArray<T>::operator!=(const NArray<T>& na) {
+    return not (*this == na);
+};
