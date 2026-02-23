@@ -53,7 +53,7 @@ NArray<T>::~NArray() {
 template <typename T>
 NArray<T> NArray<T>::add(NArray<T>& na) {
     if (!this->shape_comp(na)) {
-        throw_error("NArrays have different dimensions.");
+        throw DimensionErrorException("NArrays have different dimensions.");
     }
     NArray<T> added = NArray<T>(this->N, this->M);
     for (int i = 0; i < this->N; i++) {
@@ -67,7 +67,7 @@ NArray<T> NArray<T>::add(NArray<T>& na) {
 template <typename T>
 NArray<T> NArray<T>::sub(NArray<T>& na) {
     if (!this->shape_comp(na)) {
-        throw_error("NArrays have different dimensions.");
+        throw DimensionErrorException("NArrays have different dimensions.");
     }
     NArray<T> subbed = NArray<T>(this->N, this->M);
     for (int i = 0; i < this->N; i++) {
@@ -91,7 +91,7 @@ NArray<T> NArray<T>::operator-(NArray<T>& na) {
 template <typename T>
 NArray<T> NArray<T>::matmult(NArray<T>& na) {
     if (!this->multiplicable(na)) {
-        throw_error("NArrays have incompatible dimensions.");
+        throw DimensionErrorException("NArrays have incompatible dimensions.");
     }
     // matrix multiplication: (l x m) @ (m x n) -> (l x n)
     int rows = std::get<0>(this->shape());
@@ -120,7 +120,7 @@ NArray<T> NArray<T>::operator*(NArray<T>& na) {
 template <typename T>
 NArray<T> NArray<T>::elmult(NArray<T>& na) {
     if (!this->shape_comp(na)) {
-        throw_error("NArrays have different dimensions.");
+        throw DimensionErrorException("NArrays have different dimensions.");
     }
     int rows = std::get<0>(this->shape());
     int columns = std::get<1>(this->shape());
@@ -138,7 +138,7 @@ NArray<T> NArray<T>::elmult(NArray<T>& na) {
 template <typename T>
 NArray<T> NArray<T>::eldiv(NArray<T>& na) {
     if (!this->shape_comp(na)) {
-        throw_error("NArrays have different dimensions.");
+        throw DimensionErrorException("NArrays have different dimensions.");
     }
     int rows = std::get<0>(this->shape());
     int columns = std::get<1>(this->shape());
