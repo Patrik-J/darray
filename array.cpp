@@ -35,7 +35,8 @@ void Array<T>::initialize(T* entries) {
 template <typename T>
 Array<T> Array<T>::add(Array<T>& a) {
     if (!check_array_dimensions(*this, a)) {
-        throw_error("Arrays have different dimensions.");
+        throw DimensionErrorException("Arrays have different dimensions.");
+        // throw_error("Arrays have different dimensions.");
     }
     Array<T> a_new = Array<T>(this->length);
     for (int i = 0; i < this->length; i++) {
@@ -47,7 +48,7 @@ Array<T> Array<T>::add(Array<T>& a) {
 template <typename T>
 Array<T> Array<T>::sub(Array<T>& a) {
     if (!check_array_dimensions(*this, a)) {
-        throw_error("Arrays have different dimensions.");
+        throw DimensionErrorException("Arrays have different dimensions.");
     }
     Array<T> a_new = Array<T>(this->length);
     for (int i = 0; i < this->length; i++) {
@@ -69,7 +70,7 @@ Array<T> Array<T>::operator-(Array<T>& a) {
 template <typename T>
 Array<T> Array<T>::mult(Array<T>& a) {
     if (!check_array_dimensions(*this, a)) {
-        throw_error("Arrays have different dimensions.");
+        throw DimensionErrorException("Arrays have different dimensions.");
     }
     Array<T> a_new = Array<T>(this->length);
     for (int i = 0; i < this->length; i++) {
@@ -81,7 +82,7 @@ Array<T> Array<T>::mult(Array<T>& a) {
 template <typename T>
 Array<T> Array<T>::div(Array<T>& a) {
     if (!check_array_dimensions(*this, a)) {
-        throw_error("Arrays have different dimensions.");
+        throw DimensionErrorException("Arrays have different dimensions.");
     }
     Array<T> a_new = Array<T>(this->length);
     for (int i = 0; i < this->length; i++) {
@@ -147,7 +148,7 @@ template <typename T>
 Array<T> Array<T>::operator=(const Array<T>& a) {
     if (this != &a) {
         if (this->length != a.length) {
-            throw_error("Cannot assign arrays of different lengths.");
+            throw DimensionErrorException("Cannot assign arrays of different lengths.");
         }
         for (int i = 0; i < this->length; i++) {
             this->data[i] = a[i];
@@ -264,7 +265,7 @@ void Array<T>::append(Array<T>& a) {
 template <typename T>
 T Array<T>::dot(Array<T>& a) {
     if (this->length != a.length) {
-        throw_error("Dot product not defined for arrays of unequal length.");
+        throw DimensionErrorException("Dot product not defined for arrays of unequal length.");
     };
     T sum {};
     for (int i = 0; i < this->length; i++) {
